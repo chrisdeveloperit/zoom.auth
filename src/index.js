@@ -6,7 +6,7 @@ import { inNumberArray, isBetween, isRequiredAllOrNone, validateRequest } from '
 
 dotenv.config()
 const app = express()
-const port = process.env.PORT || 4000
+const port = process.env.PORT || 5500
 
 app.use(express.json(), cors())
 app.options('*', cors())
