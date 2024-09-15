@@ -1,10 +1,10 @@
 services:
   - type: web
-    name: Zoom Meeting SDK Auth Sample
+    name: Zoom Meeting SDK Auth
     runtime: node
     buildCommand: npm install
     startCommand: npm start
-    repo: https://github.com/zoom/meetingsdk-auth-endpoint-sample
+    repo: https://github.com/chrisdeveloperit/zoom.auth
     rootDir: .
     plan: free
     envVars:
