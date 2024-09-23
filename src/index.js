@@ -56,4 +56,4 @@ app.post('/', (req, res) => {
   return res.json({ signature: sdkJWT })
 })
 
-app.listen(port, () => console.log(`Zoom Meeting SDK Auth Endpoint Sample Node.js, listening on port ${port}!`))
+app.listen(port, () => console.log(`Zoom Meeting SDK Auth Endpoint, listening on port ${port}!`))

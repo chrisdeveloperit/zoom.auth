@@ -10,7 +10,7 @@
 <body>
     <div class="container mt-5">
         <h1 class="mb-4">Request JWT Token</h1>
-        <form action="http://localhost:5500" method="post">
+        <form action="https://localhost" method="post">
             <div class="form-group">
                 <label for="meetingNumber">Meeting Number:</label>
                 <input type="text" class="form-control" id="meetingNumber" name="meetingNumber" required>
@@ -22,7 +22,7 @@
                     <option value="1">Admin</option>
                 </select>
             </div>
-            <input type="hidden" name="expirationSeconds" value="72800">
+            <input type="hidden" name="expirationSeconds" value="3600">
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>
