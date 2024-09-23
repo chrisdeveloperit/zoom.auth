@@ -7,7 +7,8 @@
   "scripts": {
     "format": "prettier --write src/*.js",
     "prepare": "husky install",
-    "start": "node src/index.js"
+    "start": "node src/index.js",
+    "build": "node src/index.js"
   },
   "author": "Zoom Video Communications, Inc.",
   "contributors": [
@@ -26,10 +27,10 @@
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
-    "jsrsasign": "^11.0.0"
+    "jsrsasign": "^11.0.0",
+    "husky": "^8.0.0"
   },
   "devDependencies": {
-    "husky": "^8.0.0",
     "prettier": "^3.1.1"
   }
 }
