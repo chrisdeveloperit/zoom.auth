@@ -9,7 +9,7 @@ const app = express()
 const port = process.env.PORT || 80
 //const port = 80
 
-app.use(express.json(), cors())
+app.use(cors(), express.json())
 app.options('*', cors())
 
 const propValidations = {
@@ -27,7 +27,7 @@ const coerceRequestBody = (body) => ({
   )
 })
 
-app.post('/', (req, res) => {
+app.post('/zoom.auth', (req, res) => {
   const requestBody = coerceRequestBody(req.body)
   const validationErrors = validateRequest(requestBody, propValidations, schemaValidations)
 
