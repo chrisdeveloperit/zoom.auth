@@ -7,18 +7,17 @@ import { inNumberArray, isBetween, isRequiredAllOrNone, validateRequest } from '
 dotenv.config()
 const app = express()
 const port = process.env.PORT || 443
-//const port = 80
 
-// app.use(cors(), express.json())
-// app.options('*', cors())
+app.use(cors(), express.json())
+app.options('*', cors())
 
 // Middleware to add CORS headers
-app.use(express.json(),(req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
-  res.header('Access-Control-Allow-Headers', 'Content-Type');
-  next();
-} );
+// app.use(express.json(),(req, res, next) => {
+//   res.header('Access-Control-Allow-Origin', '*');
+//   res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+//   res.header('Access-Control-Allow-Headers', 'Content-Type');
+//   next();
+// } );
 
 const propValidations = {
   role: inNumberArray([0, 1]),
@@ -35,7 +34,7 @@ const coerceRequestBody = (body) => ({
   )
 })
 
-app.post('/index.js', (req, res) => {
+app.post('/', (req, res) => {
   const requestBody = coerceRequestBody(req.body)
   const validationErrors = validateRequest(requestBody, propValidations, schemaValidations)
 
@@ -62,9 +61,6 @@ app.post('/index.js', (req, res) => {
   const sPayload = JSON.stringify(oPayload)
   const sdkJWT = KJUR.jws.JWS.sign('HS256', sHeader, sPayload, process.env.ZOOM_MEETING_SDK_SECRET)
   return res.json({ signature: sdkJWT })
-})
-app.get('/index.js', (req, res) => {
-  res.send('HELLO PEOPLE!')
 })
 
 app.listen(port, () => console.log(`Zoom Meeting SDK Auth Endpoint, listening on port ${port}!`))
