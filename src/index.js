@@ -27,7 +27,7 @@ const coerceRequestBody = (body) => ({
   )
 })
 
-app.post('/zoom.auth', (req, res) => {
+app.post('/', (req, res) => {
   const requestBody = coerceRequestBody(req.body)
   const validationErrors = validateRequest(requestBody, propValidations, schemaValidations)
 
