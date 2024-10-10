@@ -6,7 +6,7 @@ import { inNumberArray, isBetween, isRequiredAllOrNone, validateRequest } from '
 
 dotenv.config()
 const app = express()
-const port = process.env.PORT || 80
+const port = process.env.PORT || 443
 //const port = 80
 
 app.use(cors(), express.json())
