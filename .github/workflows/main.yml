@@ -21,6 +21,12 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Build project
+        env:
+          ZOOM_MEETING_SDK_KEY: ${{ secrets.ZOOM_MEETING_SDK_KEY }}
+          ZOOM_MEETING_SDK_SECRET: ${{ secrets.ZOOM_MEETING_SDK_SECRET }}
+        run: npm run build
+
       - name: Zip the application
         run: zip -r deploy.zip .
 
