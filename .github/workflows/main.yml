@@ -25,7 +25,7 @@ jobs:
         env:
           ZOOM_MEETING_SDK_KEY: ${{ secrets.ZOOM_MEETING_SDK_KEY }}
           ZOOM_MEETING_SDK_SECRET: ${{ secrets.ZOOM_MEETING_SDK_SECRET }}
-        run: npm run build
+        run: npm run release
 
       - name: Zip the application
         run: zip -r deploy.zip .
@@ -40,3 +40,15 @@ jobs:
           version_label: ${{ github.sha }}
           region: us-east-1
           deployment_package: deploy.zip
+      - name: Notify on failure
+        if: failure()
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 587
+          username: ${{ secrets.SMTP_USERNAME }}
+          password: ${{ secrets.SMTP_PASSWORD }}
+          subject: GitHub Actions - Deploy to Elastic Beanstalk Failed
+          to: your-email@example.com
+          from: github-actions@example.com
+          body: The deployment to Elastic Beanstalk has failed. Please check the logs for more details.
