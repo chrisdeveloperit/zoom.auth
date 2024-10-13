@@ -1,13 +1,36 @@
 import cors from 'cors'
-import dotenv from 'dotenv'
+//import dotenv from 'dotenv'
 import express from 'express'
 import { KJUR } from 'jsrsasign'
 import { inNumberArray, isBetween, isRequiredAllOrNone, validateRequest } from './validations.js'
 
-dotenv.config()
+require('dotenv').config()
+const AWS = require('aws-sdk')
+const ssm = new AWS.SSM({ region: 'us-east-1' })
+
+async function loadParameters() {
+  const parameterNames = ['ZOOM_MEETING_SDK_KEY', 'ZOOM_MEETING_SDK_SECRET']
+  const promises = parameterNames.map((name) => {
+    return ssm.getParameter({ Name: name, WithDecryption: true }).promise()
+  })
+  const results = await Promise.all(promises)
+  results.forEach((param, index) => {
+    process.env[parameterNames[index]] = param.Parameter.Value
+  })
+}
+
+//dotenv.config()
+loadParameters()
+  .then(() => {
+    // Your app start logic goes here
+    console.log('ZOOM_MEETING_SDK_KEY:', process.env.ZOOM_MEETING_SDK_KEY)
+    console.log('ZOOM_MEETING_SDK_SECRET:', process.env.ZOOM_MEETING_SDK_SECRET)
+  })
+  .catch((err) => {
+    console.error('Failed to load parameters', err)
+  })
 const app = express()
 const port = process.env.PORT || 4000
-//const port = 80
 
 app.use(cors(), express.json())
 app.options('*', cors())
