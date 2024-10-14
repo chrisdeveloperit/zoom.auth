@@ -33,8 +33,8 @@ jobs:
           aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws_session_token: ${{ secrets.AWS_SESSION_TOKEN }}
-          application_name: 'zauth'
-          environment_name: 'Zauth-env'
+          application_name: 'authZoom'
+          environment_name: 'Auth-env'
           version_label: ${{ github.sha }}
           region: us-east-1
           deployment_package: deploy.zip
