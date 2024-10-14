@@ -23,7 +23,10 @@ jobs:
     
       - name: Zip the application
         run: zip -r deploy.zip .
-
+        
+      - name: List contents of zip file
+        run: unzip -l deploy.zip
+        
       - name: Deploy to Elastic Beanstalk
         uses: einaregilsson/beanstalk-deploy@v22
         with:
