@@ -13,20 +13,20 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '20'
+      #- name: Set up Node.js
+      #  uses: actions/setup-node@v2
+      #  with:
+      #    node-version: '20'
 
-      - name: Install dependencies
-        run: npm install
+     # - name: Install dependencies
+     #   run: npm install
     
       - name: Zip the application
         run: zip -r deploy.zip .
         
       - name: List contents of zip file
         run: unzip -l deploy.zip
-        
+
       - name: Deploy to Elastic Beanstalk
         uses: einaregilsson/beanstalk-deploy@v22
         with:
