@@ -1,6 +1,6 @@
 {
   "type": "module",
-  "name": "meetingsdk-auth-endpoint-sample",
+  "name": "meetingsdk-auth-endpoint",
   "version": "2.12.0",
   "description": "Generate a Meeting SDK JWT to join Zoom meetings and webinars with the Meeting SDK.",
   "main": "src/index.js",
